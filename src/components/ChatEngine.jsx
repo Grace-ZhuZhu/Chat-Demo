@@ -5,13 +5,6 @@ const ChatEngine = (props) => {
     const context = useContext(ChatEngineContext);
     const chatFeedProps = {...context, ...props};
 
-    getLatestMessages(
-        props, props.chatID, 45,
-        (id, messages) => {
-          context.setMessages(messages)
-        }
-      )
-
     return (
         <>
             <Socket {...props} />
