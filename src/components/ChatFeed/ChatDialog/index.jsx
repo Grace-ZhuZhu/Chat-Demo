@@ -1,6 +1,6 @@
 import React from 'react';
-import _ from 'lodash'
-import Message from './Message'
+import _ from 'lodash';
+import Message from '../Message/index.jsx';
 
 const isMyMessage = (userName, message) => {
     if(_.isEmpty(message, 'sender.username') || _.isEmpty(message, 'sender')) {
@@ -25,12 +25,10 @@ const ChatFeedDialog = (props) => {
     
             return (
                 <div key={`msg_${index}`} >
-                    <div className="message-block">
-                        <Message 
-                            message={message} 
-                            isMyMessage={isMyMessage(userName, message)}
-                        />
-                    </div>
+                    <Message 
+                        message={message} 
+                        isMyMessage={isMyMessage(userName, message)}
+                    />
                 </div>
             );
         });

@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import MessageForm from './MessageForm';
-import ChatFeedHeader from './ChatFeedHeader';
-import ChatDetailsSection from './ChatDetailsSection';
-import ChatFeedDialog from './ChatFeedDialog';
+import MessageForm from './MessageForm/index.jsx';
+import ChatFeedHeader from './ChatFeedHeader/index.jsx';
+import ChatDetailsSection from './ChatDetails/index.jsx';
+import ChatDialog from './ChatDialog/index.jsx';
+import './ChatFeed.css';
 
 const ChatFeed = (props) => {
   const { chats, activeChat, userName, messages } = props;
@@ -24,7 +25,7 @@ const ChatFeed = (props) => {
 				onExpand={handleExpandDetails}
 			/>
       	
-			<ChatFeedDialog 
+			<ChatDialog 
 				chat={chat}
 				userName={userName}
 				messages={messages}

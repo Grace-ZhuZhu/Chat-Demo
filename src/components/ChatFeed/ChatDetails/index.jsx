@@ -1,7 +1,7 @@
 import React from 'react';
-import './ChatFeed.css'
+import './ChatDetails.css'
 
-const ChatDetailsSection = (props) => {
+const ChatDetails = (props) => {
     return (
         <div className='chat-details'>
             This is the details section
@@ -9,4 +9,4 @@ const ChatDetailsSection = (props) => {
     )
 }
 
-export default ChatDetailsSection
+export default ChatDetails

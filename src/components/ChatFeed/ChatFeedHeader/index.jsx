@@ -1,6 +1,6 @@
 import React from 'react';
 import { PlusCircleOutlined } from "@ant-design/icons";
-import './ChatFeed.css';
+import './ChatFeedHeader.css';
 
 const ChatFeedHeader = ({chat, onExpand}) => {
     return (
