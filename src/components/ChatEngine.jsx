@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { ChatEngineContext, Socket, ChatFeed, getLatestMessages } from 'react-chat-engine'
+import { ChatEngineContext, Socket, ChatFeed } from 'react-chat-engine'
 
 const ChatEngine = (props) => {
     const context = useContext(ChatEngineContext);
