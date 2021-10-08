@@ -4,7 +4,7 @@ import { ChatEngineWrapper} from 'react-chat-engine';
 
 import ChatEngine  from './ChatEngine.jsx';
 
-const HomePage = (props) => {
+const ChatWindow = (props) => {
 
     return (
         <ChatEngineWrapper>
@@ -13,4 +13,4 @@ const HomePage = (props) => {
     )
 }
 
-export default HomePage
+export default ChatWindow

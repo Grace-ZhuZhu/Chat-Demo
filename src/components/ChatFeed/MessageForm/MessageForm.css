@@ -1,6 +1,6 @@
 /* message form */
 .message-form-container {
-    position: absolute;
+    position: fixed;
     bottom: 0px;
     display: block;
     width: 70%;
