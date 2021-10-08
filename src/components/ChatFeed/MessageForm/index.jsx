@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
-import { SendOutlined, PictureOutlined } from '@ant-design/icons';
-import { sendMessage, isTyping } from 'react-chat-engine';
+import { sendMessage } from 'react-chat-engine';
+import UploadButton from './UploadButton.jsx';
+import SubmitButton from './SubmitButton.jsx';
+import { PLACE_HOLDER } from './MessageFormService.jsx';
 import './MessageForm.css';
 
 const MessageForm = (props) => {
-  	const [value, setValue] = useState('');
   	const { chatId, creds } = props;
+  	const [value, setValue] = useState('');
 
   	const handleChange = (event) => {
     	setValue(event.target.value);
-
-    	isTyping(props, chatId);
   	};
 
   	const handleSubmit = (event) => {
@@ -32,27 +32,16 @@ const MessageForm = (props) => {
   	return (
 		<div className="message-form-container">
     		<form className="message-form" onSubmit={handleSubmit}>
-      		<input
-        		className="message-input"
-        		placeholder="Send a message..."
-        		value={value}
-        		onChange={handleChange}
-        		onSubmit={handleSubmit}
-      		/>
-      		<label htmlFor="upload-button">
-        		<span className="image-button">
-          		<PictureOutlined className="picture-icon" />
-        		</span>
-      		</label>
-      		<input
-        		type="file"
-        		multiple={false}
-        		id="upload-button"
-        		onChange={handleUpload.bind(this)}
-      		/>
-      		<button type="submit" className="send-button">
-       	 		<SendOutlined className="send-icon" />
-      		</button>
+      			<input
+        			className="message-input"
+        			placeholder={PLACE_HOLDER}
+        			value={value}
+        			onChange={handleChange}
+        			onSubmit={handleSubmit}
+      			/>
+
+				<UploadButton upload={handleUpload} />
+      			<SubmitButton />
     		</form>
 		</div>
   );

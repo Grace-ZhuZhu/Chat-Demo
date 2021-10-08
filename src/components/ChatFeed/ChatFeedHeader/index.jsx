@@ -1,12 +1,13 @@
 import React from 'react';
 import { PlusCircleOutlined } from "@ant-design/icons";
+import { getHeaderTitle } from './ChatFeedHeaderService.jsx';
 import './ChatFeedHeader.css';
 
 const ChatFeedHeader = ({chat, onExpand}) => {
     return (
         <div className="chat-title-container">
             <div className="chat-title">
-                {`${chat ? chat.title : 'Group'}(${chat ? chat.people.length : 0 })`}
+                { getHeaderTitle(chat) }
             </div>
             <PlusCircleOutlined 
                 className='plus-icon' 

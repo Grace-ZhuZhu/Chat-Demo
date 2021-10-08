@@ -1,11 +1,12 @@
 import React from 'react'
+import { getClassNameForMyOrOtherMessage } from './MessageService.jsx';
 
 const TextMessage = ({text, isMyMessage}) => {
-    const isMyMessageClass = isMyMessage ? 'my-message' : 'otherMessage';
+    const myOrOtherMessageClass = getClassNameForMyOrOtherMessage(isMyMessage);
 
     return (
         <div className="message-block">
-        	<div className={ `message-text ${isMyMessageClass}` }>
+        	<div className={ `message-text ${myOrOtherMessageClass}` }>
           		{text}
         	</div>
 		</div>

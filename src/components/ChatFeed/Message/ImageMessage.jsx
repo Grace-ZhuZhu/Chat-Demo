@@ -1,14 +1,15 @@
 import React from 'react'
+import { getClassNameForMyOrOtherMessage } from './MessageService.jsx';
 
 const ImageMessage = ({ file, isMyMessage }) => {
-    const isMyMessageClass = isMyMessage ? 'my-message' : 'otherMessage';
+    const myOrOtherMessageClass = getClassNameForMyOrOtherMessage(isMyMessage);
 
     return (
         <div className="message-block">
           	<img
             	src={ file }
             	alt="message-attachment"
-        		className={ `message-image ${isMyMessageClass}` }
+        		className={ `message-image ${myOrOtherMessageClass}` }
           	/>
 		</div>
     )

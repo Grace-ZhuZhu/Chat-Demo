@@ -1,16 +1,16 @@
 import React from 'react';
-import _ from 'lodash';
 import TextMessage from './TextMessage';
 import ImageMessage from './ImageMessage';
+import { hasAttachment } from './MessageService.jsx';
 import './Message.css';
 
 const Message = ({message, isMyMessage}) => {
-    if (!_.isEmpty(message.attachments)) {
+    if (hasAttachment(message)) {
         return (
-          		<ImageMessage
-            		file={message.attachments[0].file}
-            		isMyMessage={isMyMessage}
-          		/>
+          	<ImageMessage
+            	file={message.attachments[0].file}
+            	isMyMessage={isMyMessage}
+          	/>
         );
       }
     
