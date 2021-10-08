@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChatEngine } from 'react-chat-engine';
+import Homepage from './components/Homepage';
 
 const projectID = '79f9e728-233e-419e-987b-4a832fba2c90';
 const chatID = 61356;
@@ -9,7 +9,7 @@ const userSecret='123456';
 
 const App = () => {
   return (
-      <ChatEngine
+      <Homepage
         height = '100vh' 
         projectID = {projectID}
         userName = {userName}
