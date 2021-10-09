@@ -8,4 +8,19 @@ export const isMyMessage = (userName, message) => {
     return userName === message.sender.username;
 }
 
-export const getMessagesList = (messagesObject) => Object.values(messagesObject);
+export const getMessagesList = (messagesObject) => {
+    if(_.isEmpty(messagesObject)) {
+        return [];
+    }
+
+    return Object.values(messagesObject);
+}
+
+export const getDeteledMessagesList = (messages, messageId) => {
+    const index = messages.findIndex(msg => msg.messageId === messageId);
+    if(index === -1) {
+        return messages;
+    }
+
+    return messages.splice(index, 1);
+}

@@ -5,8 +5,8 @@ import SubmitButton from './SubmitButton.jsx';
 import { PLACE_HOLDER } from './MessageFormService.jsx';
 import './MessageForm.css';
 
-const MessageForm = (props) => {
-  	const { chatId, creds } = props;
+const MessageForm = ({ authInfo }) => {
+	const {creds, chatID} = authInfo;
   	const [value, setValue] = useState('');
 
   	const handleChange = (event) => {
@@ -19,14 +19,14 @@ const MessageForm = (props) => {
     	const text = value.trim();
 
     	if (text.length > 0) {
-      		sendMessage(creds, chatId, { text });
+      		sendMessage(creds, chatID, { text });
     	}
 
     	setValue('');
   	};
 
   	const handleUpload = (event) => {
-    	sendMessage(creds, chatId, { files: event.target.files, text: '' });
+    	sendMessage(creds, chatID, { files: event.target.files, text: '' });
   	};
 
   	return (

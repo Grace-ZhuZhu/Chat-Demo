@@ -1,26 +1,21 @@
 import React from 'react';
 import UserAvatar from './UserAvatar';
 import MessageContent from './MessageContent';
-import { getClassNameForMyOrOtherMessage, getClassNameForMyOrOtherContent } from './MessageService.jsx';
+import { getClassNameForMyOrOtherMessage } from './MessageService.jsx';
 import './Message.css';
 
 const Message = ({message, isMyMessage}) => {
 	const user = message.sender;
     const myOrOtherMessageClass = getClassNameForMyOrOtherMessage(isMyMessage);
-    const myOrOtherContentClass = getClassNameForMyOrOtherContent(isMyMessage);
 
 	return (
 		<div className = { `message-container ${myOrOtherMessageClass}` } >
 			< UserAvatar user={ user } />
-
-			<div className={ `message-content-block ${myOrOtherContentClass}`}>
-				<div className='username'> 
-					{ user.username}
-				</div>
-				<MessageContent 
+			<MessageContent 
+					username={user.username}
 					message={message}
+					isMyMessage={isMyMessage}
 				/>
-			</div>
 		</div>
 	)
 }

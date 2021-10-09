@@ -6,7 +6,21 @@ import ChatDialog from './ChatDialog/index.jsx';
 import './ChatFeed.css';
 
 const ChatFeed = (props) => {
-  const { chats, activeChat, userName, messages } = props;
+  const { 
+	  chats, 
+	  activeChat, 
+	  projectID,
+	  userName, 
+	  userSecret,
+	  messages,
+	  creds 
+	} = props;
+
+  const authInfo = {
+	creds,
+	chatID: activeChat
+  }
+
   const chat = chats && chats[activeChat];
 
   const [state, setState] = useState({
@@ -29,9 +43,10 @@ const ChatFeed = (props) => {
 				chat={chat}
 				userName={userName}
 				messages={messages}
+				authInfo={authInfo}
 			/>
 
-       		<MessageForm {...props} chatId={activeChat} />
+       		<MessageForm authInfo={authInfo} />
 		</div>
 
 		{
