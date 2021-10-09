@@ -1,4 +1,8 @@
 .chat-title-container {
+    position: fixed;
+    top: 0px;
+    display: block;
+    width: 70%;
     padding-bottom: 80px;
     border-bottom: 1px;  
     font-size: 28px;

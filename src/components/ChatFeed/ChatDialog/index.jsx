@@ -2,6 +2,7 @@ import React from 'react';
 import _ from 'lodash';
 import Message from '../Message/index.jsx';
 import { isMyMessage, getMessagesList } from './ChatDialogService.jsx';
+import './ChatDialog.css';
 
 const ChatFeedDialog = (props) => {
     const { chat, userName, messages } = props;
@@ -30,9 +31,9 @@ const ChatFeedDialog = (props) => {
     };
 
     return (
-        <>
+        <div className='chat-dialog-container'>
             {renderMessages()}
-        </>
+        </div>
     )
 }
 

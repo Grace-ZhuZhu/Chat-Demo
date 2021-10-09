@@ -1,5 +1,7 @@
 .chat-feed {
     float: left;
     width: 70%; 
+    height: 100%;
     display: block;
+    bottom: 100px;
 }

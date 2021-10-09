@@ -1,0 +1,7 @@
+.chat-dialog-container {
+    position: absolute;
+    top: 100px;
+    width: 70%;
+    height: 75%;
+    overflow-y: scroll;
+}
