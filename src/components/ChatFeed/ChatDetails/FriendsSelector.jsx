@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import _ from 'lodash';
 import FriendOption from './FriendOption.jsx';
 import { getSelectedNames } from './FriendsSelectorService.jsx';
 import { addPerson } from 'react-chat-engine';
@@ -46,6 +47,10 @@ const FriendsSelector = ({ friends, authInfo, onFriendAdded }) => {
                />
            );
         })
+    }
+
+    if(_.isEmpty(friendList)) {
+        return <div> No more friends to invite </div>;
     }
 
     return (
