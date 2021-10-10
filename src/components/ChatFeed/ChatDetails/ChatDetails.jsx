@@ -5,7 +5,7 @@ import FriendsSelector from './FriendsSelector';
 import { getFriendsList } from './ChatDetailsService';
 import './ChatDetails.css'
 
-const ChatDetails = ({ people, authInfo }) => {
+const ChatDetails = ({ people, authInfo, onFriendAdded }) => {
     const [ showFriends, setShowFriends ] = useState(false);
 
     const handleAddFriend = () => {
@@ -17,10 +17,10 @@ const ChatDetails = ({ people, authInfo }) => {
             return null;
         }
 
-        return people.map(p => {
+        return people.map((p, index) => {
             const { person } = p;
             return (
-                <div>
+                <div key={`{person.username}_index`}>
                     <UserAvatar user={ person } />
                     <span> {person.username} </span>
                 </div>
@@ -41,6 +41,7 @@ const ChatDetails = ({ people, authInfo }) => {
                 <FriendsSelector 
                     friends={getFriendsList(people)} 
                     authInfo={authInfo}
+                    onFriendAdded={onFriendAdded}
                 />
             }
         </div>

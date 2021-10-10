@@ -1,6 +1,6 @@
 import React from 'react'
 
-const FriendOption = ({ friendName, key, onSelect }) => {
+const FriendOption = ({ friendName, id, onSelect }) => {
 
     const handleClick = (e) => {
         onSelect(e.target.value);
@@ -10,11 +10,11 @@ const FriendOption = ({ friendName, key, onSelect }) => {
         <div className='friend-option'>
             <input 
                 type="checkbox" 
-                name={key} 
+                name={id} 
                 value={friendName} 
                 onClick={handleClick}
             />
-            <label for={key}> {friendName} </label>
+            <label htmlFor={id}> {friendName} </label>
         </div>
     ) 
 }

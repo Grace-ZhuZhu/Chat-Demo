@@ -36,6 +36,10 @@ const ChatFeed = (props) => {
 		setFormContent('');
   }
 
+  const handleFriendAdded = (response) => {
+		const { userName } = response.person;
+  }
+
   return (
     <div className="chat-feed-container">
 		<div className="chat-feed">
@@ -64,6 +68,7 @@ const ChatFeed = (props) => {
 			<ChatDetailsSection 
 				people={people} 
 				authInfo={authInfo}
+				onFriendAdded={handleFriendAdded}
 			/> :
 			null
 		}

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import FriendOption from './FriendOption.jsx';
 import { getSelectedNames } from './FriendsSelectorService.jsx';
+import { addPerson } from 'react-chat-engine';
 
-const FriendsSelector = ({ friends, authInfo }) => {
+const FriendsSelector = ({ friends, authInfo, onFriendAdded }) => {
     const {creds, chatID} = authInfo;
     const [ friendList, setFriendList ] = useState({});
 
@@ -27,15 +28,20 @@ const FriendsSelector = ({ friends, authInfo }) => {
     const handleSubmit = (event, values) => {
         event.preventDefault();
         const selected = getSelectedNames(friendList);
+        selected.forEach(name => {
+            addPerson(creds, chatID, name, onFriendAdded);
+        });
     }
 
     const renderFriendOptions = () => {
         return friends.map((friendName, index) => {
-            const key = `${friendName}_${index}`;
+            const key =`${friendName}_${index}`;
+
             return(
                 <FriendOption 
                    friendName={friendName}
                    key={key}
+                   id={key}
                    onSelect={handleSelet}
                />
            );
