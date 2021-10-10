@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import MessageForm from './MessageForm/MessageForm.jsx';
 import ChatFeedHeader from './ChatFeedHeader/ChatFeedHeader.jsx';
 import ChatDetailsSection from './ChatDetails/ChatDetails.jsx';
-import ChatDialog from './ChatDialog/ChatFeedDialog.jsx';
+import ChatDialog from './ChatDialog/ChatDialog.jsx';
 import { getPeople, getHeaderTitle, sendWelcomeMessage } from './ChatFeedService.jsx';
 import './ChatFeed.css';
 

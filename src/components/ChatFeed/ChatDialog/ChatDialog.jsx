@@ -6,7 +6,7 @@ import ContextMenu from '../Message/ContextMenu.jsx';
 import './ChatDialog.css';
 import SystemNotification from '../Message/SystemNotification.jsx';
 
-const ChatFeedDialog = (props) => {
+const ChatDialog = (props) => {
     const { chat, userName, messages, authInfo, onEditMessage } = props;
     const SYSTEM_NOTIFICATION_INITIAL_STATE = {
         show: false,
@@ -77,4 +77,4 @@ const ChatFeedDialog = (props) => {
     )
 }
 
-export default ChatFeedDialog
+export default ChatDialog
