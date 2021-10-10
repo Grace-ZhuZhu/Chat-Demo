@@ -3,6 +3,7 @@ import MessageForm from './MessageForm/MessageForm.jsx';
 import ChatFeedHeader from './ChatFeedHeader/ChatFeedHeader.jsx';
 import ChatDetailsSection from './ChatDetails/ChatDetails.jsx';
 import ChatDialog from './ChatDialog/ChatFeedDialog.jsx';
+import { getPeople, getHeaderTitle } from './ChatFeedService.jsx';
 import './ChatFeed.css';
 
 const ChatFeed = (props) => {
@@ -19,7 +20,8 @@ const ChatFeed = (props) => {
 	chatID: activeChat
   }
   const chat = chats && chats[activeChat];
-  const people = chat && chat.people;
+  const people = getPeople(chat);
+  const chatTitle = getHeaderTitle(chat, people);
 
   const [ detailsExpanded, setDetailsExpanded ] = useState(false);
   const [ formContent, setFormContent ] = useState('');
@@ -44,7 +46,7 @@ const ChatFeed = (props) => {
     <div className="chat-feed-container">
 		<div className="chat-feed">
      	 	<ChatFeedHeader 
-	  			chat={chat} 
+	  			title={chatTitle} 
 				onExpand={handleExpandDetails}
 			/>
       	
