@@ -1,3 +1,21 @@
-.chat-details {
+.chat-details-container {
     float: right;
+    display: flex;
+    flex-direction: column;
+    padding-top: 100px;
+}
+
+.members-section {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 20px;
+}
+ 
+.friends-select {
+    width: 100%;
+    border-color: #eee;
+}
+
+.friend-option {
+    padding: 5px;
 }

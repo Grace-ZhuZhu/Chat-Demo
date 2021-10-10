@@ -19,6 +19,7 @@ const ChatFeed = (props) => {
 	chatID: activeChat
   }
   const chat = chats && chats[activeChat];
+  const people = chat && chat.people;
 
   const [ detailsExpanded, setDetailsExpanded ] = useState(false);
   const [ formContent, setFormContent ] = useState('');
@@ -60,7 +61,10 @@ const ChatFeed = (props) => {
 
 		{
 			detailsExpanded ?
-			<ChatDetailsSection /> :
+			<ChatDetailsSection 
+				people={people} 
+				authInfo={authInfo}
+			/> :
 			null
 		}
     </div>
