@@ -2,10 +2,13 @@ import _ from 'lodash';
 import { isTextMessage } from '../Message/MessageService';
 
 export const SYSTEM_NOTIFICATION_TYPES = {
-    WELCOME: 'WELCOME',
     DELETE_TEXT: 'DELETE_TEXT',
     DELETE_MEDIA: 'DELETE_MEDIA'
 } 
+
+export const SYSTEM_MESSAGE_TYPES = {
+    WELCOME: 'WELCOME'
+}
 
 export const getSystemNotificationType = (message) => {
     if(isTextMessage(message)) {

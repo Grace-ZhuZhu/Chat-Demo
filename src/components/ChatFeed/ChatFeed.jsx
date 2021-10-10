@@ -3,7 +3,7 @@ import MessageForm from './MessageForm/MessageForm.jsx';
 import ChatFeedHeader from './ChatFeedHeader/ChatFeedHeader.jsx';
 import ChatDetailsSection from './ChatDetails/ChatDetails.jsx';
 import ChatDialog from './ChatDialog/ChatFeedDialog.jsx';
-import { getPeople, getHeaderTitle } from './ChatFeedService.jsx';
+import { getPeople, getHeaderTitle, sendWelcomeMessage } from './ChatFeedService.jsx';
 import './ChatFeed.css';
 
 const ChatFeed = (props) => {
@@ -39,7 +39,8 @@ const ChatFeed = (props) => {
   }
 
   const handleFriendAdded = (response) => {
-		const { userName } = response.person;
+		const { username } = response.person;
+		sendWelcomeMessage(username, authInfo);
   }
 
   return (
