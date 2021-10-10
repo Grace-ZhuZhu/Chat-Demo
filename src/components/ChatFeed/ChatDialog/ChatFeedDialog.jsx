@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import _ from 'lodash';
-import Message from '../Message/index.jsx';
+import Message from '../Message/Message.jsx';
 import { isMyMessage, getMessagesList, getDeteledMessagesList } from './ChatDialogService.jsx';
 import ContextMenu from '../Message/ContextMenu.jsx';
 import './ChatDialog.css';

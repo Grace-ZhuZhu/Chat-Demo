@@ -1,17 +1,15 @@
 import React, { useState } from 'react';
-import MessageForm from './MessageForm/index.jsx';
-import ChatFeedHeader from './ChatFeedHeader/index.jsx';
-import ChatDetailsSection from './ChatDetails/index.jsx';
-import ChatDialog from './ChatDialog/index.jsx';
+import MessageForm from './MessageForm/MessageForm.jsx';
+import ChatFeedHeader from './ChatFeedHeader/ChatFeedHeader.jsx';
+import ChatDetailsSection from './ChatDetails/ChatDetails.jsx';
+import ChatDialog from './ChatDialog/ChatFeedDialog.jsx';
 import './ChatFeed.css';
 
 const ChatFeed = (props) => {
   const { 
 	  chats, 
 	  activeChat, 
-	  projectID,
 	  userName, 
-	  userSecret,
 	  messages,
 	  creds 
 	} = props;
