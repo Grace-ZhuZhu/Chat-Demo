@@ -13,20 +13,26 @@ const ChatFeed = (props) => {
 	  messages,
 	  creds 
 	} = props;
-
+	
   const authInfo = {
 	creds,
 	chatID: activeChat
   }
-
   const chat = chats && chats[activeChat];
 
-  const [state, setState] = useState({
-    detailsExpanded: false,
-  })
+  const [ detailsExpanded, setDetailsExpanded ] = useState(false);
+  const [ formContent, setFormContent ] = useState('');
 
   const handleExpandDetails = () => {
-		setState({...state, detailsExpanded: !state.detailsExpanded});
+		setDetailsExpanded(!detailsExpanded);
+  }
+
+  const handleEditMessage = (content) => {
+		setFormContent(content);
+  }
+
+  const handleFinishEdit = () => {
+		setFormContent('');
   }
 
   return (
@@ -42,13 +48,18 @@ const ChatFeed = (props) => {
 				userName={userName}
 				messages={messages}
 				authInfo={authInfo}
+				onEditMessage={handleEditMessage}
 			/>
 
-       		<MessageForm authInfo={authInfo} />
+       		<MessageForm 
+			   authInfo={authInfo} 
+			   content={formContent}
+			   onFinishEdit={handleFinishEdit}
+			/>
 		</div>
 
 		{
-			state.detailsExpanded ?
+			detailsExpanded ?
 			<ChatDetailsSection /> :
 			null
 		}

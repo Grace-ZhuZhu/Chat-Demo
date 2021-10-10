@@ -5,6 +5,10 @@ import { getClassNameForMyOrOtherMessage } from './MessageService.jsx';
 import './Message.css';
 
 const Message = ({message, isMyMessage}) => {
+	if(!message) {
+		return null;
+	}
+	
 	const user = message.sender;
     const myOrOtherMessageClass = getClassNameForMyOrOtherMessage(isMyMessage);
 

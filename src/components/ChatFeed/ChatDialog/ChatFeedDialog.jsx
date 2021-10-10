@@ -1,13 +1,19 @@
 import React, {useState, useEffect} from 'react';
 import _ from 'lodash';
 import Message from '../Message/Message.jsx';
-import { isMyMessage, getMessagesList, getDeteledMessagesList } from './ChatDialogService.jsx';
+import { isMyMessage, getMessagesList, getSingleMessage, getDeteledMessagesList, getSystemNotificationType } from './ChatDialogService.jsx';
 import ContextMenu from '../Message/ContextMenu.jsx';
 import './ChatDialog.css';
+import SystemNotification from '../Message/SystemNotification.jsx';
 
 const ChatFeedDialog = (props) => {
-    const { chat, userName, messages, authInfo } = props;
-    const [ messagesList, setMessagesList ] = useState(getMessagesList([]));
+    const { chat, userName, messages, authInfo, onEditMessage } = props;
+    const [ systemNotification, setSystemNotification ] = useState({
+        show: false,
+        type: null,
+        info: null
+    });
+    const [ messagesList, setMessagesList ] = useState([]);
 
     useEffect(() => {
         const list = getMessagesList(messages);
@@ -15,15 +21,24 @@ const ChatFeedDialog = (props) => {
     }, [messages])
 
     const handleDeleteMessage = (messageId) => {
-        const updatedList = getDeteledMessagesList(messagesList, messageId);
-        setMessagesList(updatedList);
-    }
+        const message = getSingleMessage(messages, messageId);
+        if(message) {
+            const updatedList = getDeteledMessagesList(messagesList, messageId);
+            setMessagesList(updatedList);
+            setSystemNotification({ 
+                show: true,
+                type: getSystemNotificationType(message),
+                info: {text: message.text}
+            });
+        }
+    }   
 
     const renderMessages = () => {
         if (!chat) { 
             return <div /> 
         };
 
+        const messagesList =  getMessagesList(messages);
         if(_.isEmpty(messagesList)) {
             return null;
         }
@@ -42,11 +57,15 @@ const ChatFeedDialog = (props) => {
 
     return (
         <div className='chat-dialog-container'>
-        <ContextMenu 
-            authInfo={authInfo} 
-            onDelete={handleDeleteMessage}
-        />
+            <ContextMenu 
+                authInfo={authInfo} 
+                onDelete={handleDeleteMessage}
+            />
             {renderMessages()}
+            <SystemNotification 
+                {...systemNotification} 
+                editMessage={onEditMessage}
+            />
         </div>
     )
 }

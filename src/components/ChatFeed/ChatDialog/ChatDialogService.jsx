@@ -1,4 +1,17 @@
 import _ from 'lodash';
+import { isTextMessage } from '../Message/MessageService';
+
+export const SYSTEM_NOTIFICATION_TYPES = {
+    WELCOME: 'WELCOME',
+    DELETE_TEXT: 'DELETE_TEXT',
+    DELETE_MEDIA: 'DELETE_MEDIA'
+} 
+
+export const getSystemNotificationType = (message) => {
+    if(isTextMessage(message)) {
+        return SYSTEM_NOTIFICATION_TYPES.DELETE_TEXT;
+    }
+}
 
 export const isMyMessage = (userName, message) => {
     if(_.isEmpty(message, 'sender.username') || _.isEmpty(message, 'sender')) {
@@ -16,6 +29,11 @@ export const getMessagesList = (messagesObject) => {
     return Object.values(messagesObject);
 }
 
+export const getSingleMessage = (messages, messageId) => {
+    const messagesList = getMessagesList(messages)
+    return messagesList.find(msg => msg.id === messageId);
+}
+
 export const getDeteledMessagesList = (messages, messageId) => {
     const index = messages.findIndex(msg => msg.messageId === messageId);
     if(index === -1) {
@@ -24,3 +42,4 @@ export const getDeteledMessagesList = (messages, messageId) => {
 
     return messages.splice(index, 1);
 }
+

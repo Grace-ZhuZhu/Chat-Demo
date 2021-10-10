@@ -1,13 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { sendMessage } from 'react-chat-engine';
 import UploadButton from './UploadButton.jsx';
 import SubmitButton from './SubmitButton.jsx';
 import { PLACE_HOLDER } from './MessageFormService.jsx';
 import './MessageForm.css';
 
-const MessageForm = ({ authInfo }) => {
+const MessageForm = ({ authInfo, content, onFinishEdit }) => {
 	const {creds, chatID} = authInfo;
-  	const [value, setValue] = useState('');
+  	const [value, setValue] = useState(content);
+	
+	useEffect(() => {
+		content && setValue(content);
+    }, [content])
 
   	const handleChange = (event) => {
     	setValue(event.target.value);
@@ -23,6 +27,7 @@ const MessageForm = ({ authInfo }) => {
     	}
 
     	setValue('');
+		content && onFinishEdit();
   	};
 
   	const handleUpload = (event) => {
