@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import { isTextMessage } from '../Message/MessageService';
+import { SYSTEM_NAME } from '../ChatFeedService';
 
 export const SYSTEM_NOTIFICATION_TYPES = {
     DELETE_TEXT: 'DELETE_TEXT',
@@ -8,6 +9,10 @@ export const SYSTEM_NOTIFICATION_TYPES = {
 
 export const SYSTEM_MESSAGE_TYPES = {
     WELCOME: 'WELCOME'
+}
+
+export const isSystemMessage = (message) => {
+    return message.sender.username === SYSTEM_NAME;
 }
 
 export const getSystemNotificationType = (message) => {

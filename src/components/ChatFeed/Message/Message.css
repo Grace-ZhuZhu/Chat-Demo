@@ -54,3 +54,9 @@
     min-height: 100px;
     min-width: 100px;
   }
+
+  /* system message */
+  .system-message {
+    text-align: center;
+    color:darkorange;
+  }

@@ -1,10 +1,18 @@
 import React, {useState, useEffect} from 'react';
 import _ from 'lodash';
 import Message from '../Message/Message.jsx';
-import { isMyMessage, getMessagesList, getSingleMessage, getDeteledMessagesList, getSystemNotificationType } from './ChatDialogService.jsx';
+import { 
+    isMyMessage, 
+    getMessagesList, 
+    getSingleMessage, 
+    getDeteledMessagesList, 
+    getSystemNotificationType, 
+    isSystemMessage 
+} from './ChatDialogService.jsx';
 import ContextMenu from '../Message/ContextMenu.jsx';
-import './ChatDialog.css';
 import SystemNotification from '../Message/SystemNotification.jsx';
+import SystemMessage from '../Message/SystemMessage.jsx';
+import './ChatDialog.css';
 
 const ChatDialog = (props) => {
     const { chat, userName, messages, authInfo, onEditMessage } = props;
@@ -51,6 +59,12 @@ const ChatDialog = (props) => {
         }
     
         return messagesList.map((message, index) => {
+            if(isSystemMessage(message)) {
+                return (
+                    <SystemMessage message={message} />
+                )
+            }
+            
             return (
                 <div key={`msg_${index}`} >
                     <Message 
