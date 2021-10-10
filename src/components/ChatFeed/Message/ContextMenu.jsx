@@ -1,6 +1,6 @@
 import React from 'react';
 import { Menu, Item } from 'react-contexify';
-import { deleteMessage, ChatEngineContext } from 'react-chat-engine';
+import { deleteMessage } from 'react-chat-engine';
 
 const ContextMenu = ({ authInfo, onDelete }) => {
     const handleItemClick = ({ event, props }) => {
