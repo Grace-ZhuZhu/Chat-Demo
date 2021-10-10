@@ -7,11 +7,10 @@ const SystemNotification = ({ show, type, info, editMessage}) => {
     }
 
     if (type === SYSTEM_NOTIFICATION_TYPES.DELETE_TEXT) {
-        const { text } = info;
         return (
             <div>
                 You have deleted a message. 
-                <span onClick={() => editMessage(text)}> edit </span> 
+                <span onClick={editMessage}> edit </span> 
             </div>
         )
     }
@@ -28,7 +27,7 @@ const SystemNotification = ({ show, type, info, editMessage}) => {
         if (type === SYSTEM_NOTIFICATION_TYPES.DELETE_TEXT) {
             return (
                 <div>
-                    Welcome!
+                    { `Welcome ${info.username}!` }
                 </div>
             )
         }

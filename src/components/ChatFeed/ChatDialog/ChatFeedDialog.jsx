@@ -8,12 +8,14 @@ import SystemNotification from '../Message/SystemNotification.jsx';
 
 const ChatFeedDialog = (props) => {
     const { chat, userName, messages, authInfo, onEditMessage } = props;
-    const [ systemNotification, setSystemNotification ] = useState({
+    const SYSTEM_NOTIFICATION_INITIAL_STATE = {
         show: false,
         type: null,
         info: null
-    });
+    }
+    const [ systemNotification, setSystemNotification ] = useState(SYSTEM_NOTIFICATION_INITIAL_STATE);
     const [ messagesList, setMessagesList ] = useState([]);
+    const [ deletedMessage, setDeletedMessage ] = useState('');
 
     useEffect(() => {
         const list = getMessagesList(messages);
@@ -27,11 +29,16 @@ const ChatFeedDialog = (props) => {
             setMessagesList(updatedList);
             setSystemNotification({ 
                 show: true,
-                type: getSystemNotificationType(message),
-                info: {text: message.text}
+                type: getSystemNotificationType(message)
             });
+            message.text && setDeletedMessage(message.text);
         }
     }   
+
+    const handleEditClick = () => {
+        onEditMessage(deletedMessage);
+        setSystemNotification(SYSTEM_NOTIFICATION_INITIAL_STATE)
+    }
 
     const renderMessages = () => {
         if (!chat) { 
@@ -64,7 +71,7 @@ const ChatFeedDialog = (props) => {
             {renderMessages()}
             <SystemNotification 
                 {...systemNotification} 
-                editMessage={onEditMessage}
+                editMessage={handleEditClick}
             />
         </div>
     )
