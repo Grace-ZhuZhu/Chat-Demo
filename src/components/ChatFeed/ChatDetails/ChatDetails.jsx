@@ -35,7 +35,7 @@ const ChatDetails = ({ people, authInfo, onFriendAdded }) => {
                 {renderGroupMembers()}
             </div>
 
-            <div onClick={handleAddFriend}> Invite Friends </div>
+            <div className='invite-friends' onClick={handleAddFriend}> Invite Friends </div>
 
             { showFriends && 
                 <FriendsSelector 

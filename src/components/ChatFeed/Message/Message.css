@@ -60,3 +60,16 @@
     text-align: center;
     color:darkorange;
   }
+
+.system-notification {
+  text-align: center;
+  color:darkturquoise;
+}
+
+.edit {
+  background-color: gold;
+  border-radius: 3px;
+  padding: 2px;
+  color: black;
+  cursor: pointer;
+}

@@ -11,6 +11,15 @@
     padding-bottom: 20px;
 }
  
+.invite-friends {
+    border-radius: 3px;
+    background-color:powderblue;
+    cursor: pointer;
+    height: 30px;
+    text-align: center;
+    color:dimgrey;
+}
+
 .friends-select {
     width: 100%;
     border-color: #eee;
