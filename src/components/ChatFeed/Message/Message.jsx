@@ -4,7 +4,7 @@ import MessageContent from './MessageContent';
 import { getClassNameForMyOrOtherMessage } from './MessageService.jsx';
 import './Message.css';
 
-const Message = ({message, isMyMessage}) => {
+const Message = ({message, isMyMessage, showMenu}) => {
 	if(!message) {
 		return null;
 	}
@@ -19,6 +19,7 @@ const Message = ({message, isMyMessage}) => {
 					username={user.username}
 					message={message}
 					isMyMessage={isMyMessage}
+					showMenu={showMenu}
 				/>
 		</div>
 	)

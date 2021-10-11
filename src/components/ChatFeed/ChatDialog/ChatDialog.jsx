@@ -23,6 +23,11 @@ const ChatDialog = (props) => {
     const [ systemNotification, setSystemNotification ] = useState(SYSTEM_NOTIFICATION_INITIAL_STATE);
     const [ messagesList, setMessagesList ] = useState([]);
     const [ deletedMessage, setDeletedMessage ] = useState('');
+    const [ menuOption, setMenuOption ] = useState({
+        event: null,
+        visible: false,
+        props: {}
+    });
 
     useEffect(() => {
         const list = getMessagesList(messages);
@@ -40,6 +45,10 @@ const ChatDialog = (props) => {
             message.text && setDeletedMessage(message.text);
         }
     }   
+
+    const handleShowMenu = (option) => {
+        setMenuOption(option);
+    }
 
     const handleEditClick = () => {
         onEditMessage(deletedMessage);
@@ -71,6 +80,7 @@ const ChatDialog = (props) => {
                         key={message.id} 
                         message={message} 
                         isMyMessage={isMyMessage(userName, message)}
+                        showMenu={handleShowMenu}
                     />
                 </div>
             );
@@ -82,6 +92,8 @@ const ChatDialog = (props) => {
             <ContextMenu 
                 authInfo={authInfo} 
                 onDelete={handleDeleteMessage}
+                menuOption={menuOption}
+                showMenu={handleShowMenu}
             />
             {renderMessages()}
             <SystemNotification 
