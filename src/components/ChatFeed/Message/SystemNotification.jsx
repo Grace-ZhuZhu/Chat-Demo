@@ -1,7 +1,13 @@
 import React from 'react';
 import { SYSTEM_NOTIFICATION_TYPES } from '../ChatDialog/ChatDialogService';
 
-const SystemNotification = ({ show, type, info, editMessage}) => {
+const SystemNotification = ({ 
+    show, 
+    type, 
+    info, 
+    dismissEdit,
+    editMessage
+}) => {
     if(!show) {
         return null;
     }
@@ -10,7 +16,8 @@ const SystemNotification = ({ show, type, info, editMessage}) => {
         return (
             <div className='system-notification'>
                 You have deleted a message. 
-                <span className='edit' onClick={editMessage}> edit massage </span> 
+                <span className='edit' onClick={editMessage}> edit massages </span> 
+                <span className='dismiss' onClick={dismissEdit}> dismiss </span>
             </div>
         )
     }

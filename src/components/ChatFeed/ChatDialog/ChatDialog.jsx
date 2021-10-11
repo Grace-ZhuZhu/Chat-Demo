@@ -55,12 +55,13 @@ const ChatDialog = (props) => {
         setSystemNotification(SYSTEM_NOTIFICATION_INITIAL_STATE)
     }
 
-    const renderMessages = () => {
-        if (!chat) { 
-            return <div /> 
-        };
+    const handleDismissEdit = () => {
+        setSystemNotification({ show: false });
+        setDeletedMessage('');
+    }
 
-        if(_.isEmpty(messagesList)) {
+    const renderMessages = () => {
+        if(!chat || _.isEmpty(messagesList)) {
             return null;
         }
     
@@ -99,6 +100,7 @@ const ChatDialog = (props) => {
             <SystemNotification 
                 {...systemNotification} 
                 editMessage={handleEditClick}
+                dismissEdit={handleDismissEdit}
             />
         </div>
     )
