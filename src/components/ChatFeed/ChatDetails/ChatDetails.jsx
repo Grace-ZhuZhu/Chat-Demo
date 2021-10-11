@@ -1,15 +1,28 @@
 import React, { useState } from 'react';
 import _ from 'lodash';
+import { MinusOutlined } from '@ant-design/icons'
+import { removePerson } from 'react-chat-engine'; 
 import UserAvatar from '../Message/UserAvatar';
 import FriendsSelector from './FriendsSelector';
 import { getFriendsList } from './ChatDetailsService';
+import { ADMIN_AUTHENTIFICATION_INFO } from '../../Constants/Authinfo.jsx'
 import './ChatDetails.css'
 
-const ChatDetails = ({ people, authInfo, onFriendAdded }) => {
+const ChatDetails = ({ 
+    people, 
+    authInfo, 
+    onFriendAdded, 
+    onMemberLeft
+}) => {
     const [ showFriends, setShowFriends ] = useState(false);
 
     const handleAddFriend = () => {
         setShowFriends(true);
+    }
+
+    const handleRemoveMember = (username) => {
+        const {chatID} = authInfo;
+        removePerson(ADMIN_AUTHENTIFICATION_INFO, chatID, username, onMemberLeft);
     }
 
     const renderGroupMembers = () => {
@@ -19,10 +32,15 @@ const ChatDetails = ({ people, authInfo, onFriendAdded }) => {
 
         return people.map((p, index) => {
             const { person } = p;
+            const { username } = person;
             return (
-                <div key={`{person.username}_index`}>
+                <div key={`{username}_index`}>
                     <UserAvatar user={ person } />
-                    <span> {person.username} </span>
+                    <span> {username} </span>
+                    <MinusOutlined 
+                        className='minus-icon'
+                        onClick={(e) => handleRemoveMember(username)}
+                    />
                 </div>
             )
         })

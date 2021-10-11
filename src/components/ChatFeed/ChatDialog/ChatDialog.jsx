@@ -76,9 +76,8 @@ const ChatDialog = (props) => {
             }
             
             return (
-                <div key={`msg_${index}`} >
+                <div key={message.id}  >
                     <Message 
-                        key={message.id} 
                         message={message} 
                         isMyMessage={isMyMessage(userName, message)}
                         showMenu={handleShowMenu}

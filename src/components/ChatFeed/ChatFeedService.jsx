@@ -25,30 +25,41 @@ export const getSystemMessage = ({type, info}) => {
             return `Welcome ${info.userName}`;
         case SYSTEM_MESSAGE_TYPES.GREETING:
             return `Welcome to ${info.groupName}`;
+        case SYSTEM_MESSAGE_TYPES.LEAVE_GROUP:
+            return `${info.userName} left group`
         default:
             return '';
     }
 }
 
+const sendSystemMessage = (authInfo, type, info) => {
+    const { chatID } = authInfo;
+    const creds = SYSTEM_AUTHENTIFICATION_INFO;
+	const text = getSystemMessage({
+		type,
+		info
+	})
+	sendMessage(creds, chatID, { text });
+}
+
 export const sendWelcomeMessage = (userName, authInfo) => {
-		const { chatID } = authInfo;
-        const creds = SYSTEM_AUTHENTIFICATION_INFO;
-		const text = getSystemMessage({
-			type: SYSTEM_MESSAGE_TYPES.WELCOME,
-			info: { userName }
-		})
-		sendMessage(creds, chatID, { text });
+    const type = SYSTEM_MESSAGE_TYPES.WELCOME;
+    const info = { userName };
+    sendSystemMessage(authInfo, type, info);
+}
+
+export const sendLeaveChatMessage = (userName, authInfo) => {
+    const type = SYSTEM_MESSAGE_TYPES.LEAVE_GROUP;
+    const info = { userName };
+    
+    sendSystemMessage(authInfo, type, info);
 }
 
 export const shouldGreet = (chat, messages) => chat && _.isEmpty(messages); 
 
 export const sendGreetingMessage = (chat, authInfo) => {
     const groupName = getGroupName(chat);
-    const { chatID } = authInfo;
-    const creds = SYSTEM_AUTHENTIFICATION_INFO;
-    const text = getSystemMessage({
-        type: SYSTEM_MESSAGE_TYPES.GREETING,
-        info: { groupName }
-    })
-    sendMessage(creds, chatID, { text });
+    const type = SYSTEM_MESSAGE_TYPES.GREETING;
+    const info = { groupName };
+    sendSystemMessage(authInfo, type, info);
 }

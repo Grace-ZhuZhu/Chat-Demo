@@ -6,7 +6,8 @@ import ChatDialog from './ChatDialog/ChatDialog.jsx';
 import { 
 	getPeople, 
 	getHeaderTitle, 
-	sendWelcomeMessage 
+	sendWelcomeMessage,
+sendLeaveChatMessage 
 } from './ChatFeedService.jsx';
 import './ChatFeed.css';
 
@@ -46,6 +47,11 @@ const ChatFeed = (props) => {
 		const { username } = response.person;
 		sendWelcomeMessage(username, authInfo);
   	}
+	
+	const handleMemberLeft = (response) => {
+		const { username } = response.person;
+		sendLeaveChatMessage(username, authInfo);
+  	}
 
   	return (
     	<div className="chat-feed-container">
@@ -76,6 +82,7 @@ const ChatFeed = (props) => {
 					people={people} 
 					authInfo={authInfo}
 					onFriendAdded={handleFriendAdded}
+					onMemberLeft={handleMemberLeft}
 				/> :
 				null
 			}

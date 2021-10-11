@@ -9,7 +9,8 @@ export const SYSTEM_NOTIFICATION_TYPES = {
 
 export const SYSTEM_MESSAGE_TYPES = {
     GREETING: 'GREETING',
-    WELCOME: 'WELCOME'
+    WELCOME: 'WELCOME',
+    LEAVE_GROUP: 'LEAVE_GROUP'
 }
 
 export const isSystemMessage = (message) => {
