@@ -11,7 +11,7 @@ const ContextMenu = ({ authInfo, onDelete }) => {
 	}
 
     return (
-		<Menu id='MENU_ID'>
+		<Menu id='MENU_ID' className='context-menu'>
             <Item onClick={handleItemClick}> Delete message </Item>
         </Menu>
     )
