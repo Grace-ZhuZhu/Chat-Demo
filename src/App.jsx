@@ -1,15 +1,15 @@
 import React from 'react';
 import ChatWindow from './components/ChatWindow';
-const projectID = '79f9e728-233e-419e-987b-4a832fba2c90';
+import { PROJECT_ID, USER_PASSWORD } from './components/Constants/Authinfo.jsx';
+
 const userName = 'Claus';
-const userSecret='123456';
 
 const App = () => {
   	return (
       	<ChatWindow
-        	projectID = {projectID}
+        	projectID = {PROJECT_ID}
         	userName = {userName}
-        	userSecret = {userSecret}
+        	userSecret = {USER_PASSWORD}
       	/>
   	);
 };

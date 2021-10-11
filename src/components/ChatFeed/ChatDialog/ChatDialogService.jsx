@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import { isTextMessage } from '../Message/MessageService';
-import { SYSTEM_NAME } from '../ChatFeedService';
+import { SYSTEM_NAME } from '../../Constants/Authinfo.jsx';
 
 export const SYSTEM_NOTIFICATION_TYPES = {
     DELETE_TEXT: 'DELETE_TEXT',
