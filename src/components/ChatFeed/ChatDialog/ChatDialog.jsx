@@ -25,7 +25,7 @@ const ChatDialog = (props) => {
     const [ deletedMessage, setDeletedMessage ] = useState('');
     const [ menuOption, setMenuOption ] = useState({
         event: null,
-        visible: false,
+        shouldShow: false,
         props: {}
     });
 

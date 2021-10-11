@@ -10,13 +10,15 @@ const MessageContent = ({ username, message, isMyMessage, showMenu }) => {
 
 	function handleContextMenu(event){
 		event.preventDefault();
-		showMenu({ 
+
+		isMyMessage && showMenu({ 
 			event,
-			visible: true,
+			shouldShow: true,
 			props: {
 				messageId: message.id,
 			}
 		});
+		
 	}
 
 	const renderContent = () => {

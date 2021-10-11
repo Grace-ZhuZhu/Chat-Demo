@@ -6,8 +6,8 @@ const ContextMenu = ({ authInfo, onDelete, menuOption, showMenu }) => {
 	const { show } = useContextMenu({ id: 'MENU_ID'}); 
 
     useEffect(() => {
-        const { event, visible,  props } = menuOption;
-        visible && show(event, { props });
+        const { event, shouldShow,  props } = menuOption;
+        shouldShow && show(event, { props });
     })
 
     const handleItemClick = ({ event, props }) => {
@@ -16,10 +16,10 @@ const ContextMenu = ({ authInfo, onDelete, menuOption, showMenu }) => {
         onDelete(messageId);
         deleteMessage(creds, chatID, messageId);
 
-        showMenu({ visible: false });
+        showMenu({ shouldShow: false });
 	}
 
-    if (!menuOption.visible) {
+    if (!menuOption.shouldShow) {
         return null;
     }
 
