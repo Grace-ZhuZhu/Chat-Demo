@@ -15,10 +15,12 @@ export const isSystemMessage = (message) => {
     return message.sender.username === SYSTEM_NAME;
 }
 
-export const getSystemNotificationType = (message) => {
+export const getDeletionType = (message) => {
     if(isTextMessage(message)) {
         return SYSTEM_NOTIFICATION_TYPES.DELETE_TEXT;
     }
+
+    return SYSTEM_NOTIFICATION_TYPES.DELETE_MEDIA;
 }
 
 export const isMyMessage = (userName, message) => {
@@ -37,17 +39,8 @@ export const getMessagesList = (messagesObject) => {
     return Object.values(messagesObject);
 }
 
-export const getSingleMessage = (messages, messageId) => {
+export const getMessageById = (messages, messageId) => {
     const messagesList = getMessagesList(messages)
     return messagesList.find(msg => msg.id === messageId);
-}
-
-export const getDeteledMessagesList = (messages, messageId) => {
-    const index = messages.findIndex(msg => msg.messageId === messageId);
-    if(index === -1) {
-        return messages;
-    }
-
-    return messages.splice(index, 1);
 }
 

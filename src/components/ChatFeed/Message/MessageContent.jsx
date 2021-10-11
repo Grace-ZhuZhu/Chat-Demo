@@ -12,9 +12,9 @@ const MessageContent = ({ username, message, isMyMessage }) => {
 
 	function handleContextMenu(event){
 		  event.preventDefault();
-		  const { left, bottom } = triggerRef.current.getBoundingClientRect();
+		  const { left, top } = triggerRef.current.getBoundingClientRect();
 		  show(event, {
-			position: { x: left, y: bottom + 8 },
+			position: { x: left, y: top },
 			props: {
 				messageId: message.id,
 			},

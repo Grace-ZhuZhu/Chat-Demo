@@ -4,9 +4,8 @@ import Message from '../Message/Message.jsx';
 import { 
     isMyMessage, 
     getMessagesList, 
-    getSingleMessage, 
-    getDeteledMessagesList, 
-    getSystemNotificationType, 
+    getMessageById, 
+    getDeletionType, 
     isSystemMessage 
 } from './ChatDialogService.jsx';
 import ContextMenu from '../Message/ContextMenu.jsx';
@@ -31,13 +30,12 @@ const ChatDialog = (props) => {
     }, [messages])
 
     const handleDeleteMessage = (messageId) => {
-        const message = getSingleMessage(messages, messageId);
+        const message = getMessageById(messages, messageId);
         if(message) {
-            const updatedList = getDeteledMessagesList(messagesList, messageId);
-            setMessagesList(updatedList);
+            setMessagesList(messagesList.filter(msg => msg.id !== messageId));
             setSystemNotification({ 
                 show: true,
-                type: getSystemNotificationType(message)
+                type: getDeletionType(message)
             });
             message.text && setDeletedMessage(message.text);
         }
@@ -53,21 +51,24 @@ const ChatDialog = (props) => {
             return <div /> 
         };
 
-        const messagesList =  getMessagesList(messages);
         if(_.isEmpty(messagesList)) {
             return null;
         }
     
-        return messagesList.map((message, index) => {
+        return _.compact(messagesList).map((message, index) => {
             if(isSystemMessage(message)) {
                 return (
-                    <SystemMessage message={message} />
+                    <SystemMessage 
+                        key={message.id} 
+                        message={message} 
+                    />
                 )
             }
             
             return (
                 <div key={`msg_${index}`} >
                     <Message 
+                        key={message.id} 
                         message={message} 
                         isMyMessage={isMyMessage(userName, message)}
                     />
