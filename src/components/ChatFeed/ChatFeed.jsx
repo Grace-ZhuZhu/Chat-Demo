@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import MessageForm from './MessageForm/MessageForm.jsx';
 import ChatFeedHeader from './ChatFeedHeader/ChatFeedHeader.jsx';
 import ChatDetailsSection from './ChatDetails/ChatDetails.jsx';
