@@ -73,3 +73,16 @@
   color: black;
   cursor: pointer;
 }
+
+
+/* context menu */
+.context-menu {
+  border-radius: 3px;
+  padding: 5px;
+  position: absolute;
+  background-color: orange;
+  cursor: pointer;
+  height: 30px;
+  text-align: center;
+  color:dimgrey;
+}
