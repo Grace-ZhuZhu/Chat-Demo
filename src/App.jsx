@@ -2,7 +2,7 @@ import React from 'react';
 import ChatWindow from './components/ChatWindow';
 import { PROJECT_ID, USER_PASSWORD } from './components/Constants/Authinfo.jsx';
 
-const userName = 'Claus';
+const userName = 'Anna';
 
 const App = () => {
   	return (

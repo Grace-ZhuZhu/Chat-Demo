@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import _ from 'lodash';
-import { MinusOutlined } from '@ant-design/icons'
+import { MinusOutlined, LockOutlined } from '@ant-design/icons'
 import { removePerson } from 'react-chat-engine'; 
 import UserAvatar from '../Message/UserAvatar';
 import FriendsSelector from './FriendsSelector';
 import { getFriendsList } from './ChatDetailsService';
-import { ADMIN_AUTHENTIFICATION_INFO } from '../../Constants/Authinfo.jsx'
+import { ADMIN_NAME, ADMIN_AUTHENTIFICATION_INFO } from '../../Constants/Authinfo.jsx'
 import './ChatDetails.css'
 
 const ChatDetails = ({ 
@@ -33,14 +33,19 @@ const ChatDetails = ({
         return people.map((p, index) => {
             const { person } = p;
             const { username } = person;
+            const isAdmin = username === ADMIN_NAME;
             return (
                 <div key={`{username}_index`}>
                     <UserAvatar user={ person } />
                     <span> {username} </span>
-                    <MinusOutlined 
-                        className='minus-icon'
-                        onClick={(e) => handleRemoveMember(username)}
-                    />
+
+                    { isAdmin 
+                        ? <LockOutlined /> 
+                        : <MinusOutlined 
+                            className='minus-icon'
+                            onClick={(e) => handleRemoveMember(username)}
+                        />
+                    }
                 </div>
             )
         })
