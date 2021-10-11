@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Menu, Item, useContextMenu } from 'react-contexify';
 import { deleteMessage } from 'react-chat-engine';
+import EventWrapper from './EventWrapper.jsx';
 
 const ContextMenu = ({ authInfo, onDelete, menuOption, showMenu }) => {
 	const { show } = useContextMenu({ id: 'MENU_ID'}); 
@@ -10,13 +11,17 @@ const ContextMenu = ({ authInfo, onDelete, menuOption, showMenu }) => {
         shouldShow && show(event, { props });
     })
 
+    const closeMenu = () => {
+        showMenu({ shouldShow: false });
+    }
+
     const handleItemClick = ({ event, props }) => {
 		const { messageId } = props;
         const {creds, chatID} = authInfo;
         onDelete(messageId);
         deleteMessage(creds, chatID, messageId);
 
-        showMenu({ shouldShow: false });
+        closeMenu();
 	}
 
     if (!menuOption.shouldShow) {
@@ -24,9 +29,16 @@ const ContextMenu = ({ authInfo, onDelete, menuOption, showMenu }) => {
     }
 
     return (
-		<Menu id='MENU_ID' className='context-menu'>
-            <Item onClick={handleItemClick}> Delete message </Item>
-        </Menu>
+		<EventWrapper closeMenu={closeMenu}>
+		    <Menu 
+                id='MENU_ID' 
+                className='context-menu'
+                tabIndex="0" 
+                onBlur={closeMenu}
+            >
+                <Item onClick={handleItemClick}> Delete message </Item>
+            </Menu>
+		</EventWrapper>
     )
 }
 

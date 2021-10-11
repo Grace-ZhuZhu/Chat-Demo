@@ -8,7 +8,7 @@ import {
     getDeletionType, 
     isSystemMessage 
 } from './ChatDialogService.jsx';
-import ContextMenu from '../Message/ContextMenu.jsx';
+import ContextMenu from '../ContextMenu/ContextMenu.jsx';
 import SystemNotification from '../Message/SystemNotification.jsx';
 import SystemMessage from '../Message/SystemMessage.jsx';
 import './ChatDialog.css';
