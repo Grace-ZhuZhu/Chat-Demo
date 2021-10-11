@@ -1,0 +1,12 @@
+
+/* context menu */
+.context-menu {
+    border-radius: 3px;
+    position: fixed;
+    background-color: orange;
+    cursor: pointer;
+    height: 30px;
+    text-align: center;
+    color:dimgrey;
+  }
+  

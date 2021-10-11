@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Menu, Item, useContextMenu } from 'react-contexify';
 import { deleteMessage } from 'react-chat-engine';
 import EventWrapper from './EventWrapper.jsx';
+import './ContextMenu.css';
 
 const ContextMenu = ({ authInfo, onDelete, menuOption, showMenu }) => {
 	const { show } = useContextMenu({ id: 'MENU_ID'}); 
