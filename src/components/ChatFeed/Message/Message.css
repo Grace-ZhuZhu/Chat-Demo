@@ -34,6 +34,18 @@
     align-items: flex-start;
   }
 
+  .my-content .message-content {
+    background-color:rgb(201, 227, 241);
+    border-radius: 5px;
+    padding: 10px;
+  }
+
+  .other-content .message-content {
+    background-color:rgb(239, 244, 247);
+    border-radius: 5px;
+    padding: 10px;
+  }
+
   .username {
     color: #808080;
   }

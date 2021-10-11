@@ -47,7 +47,9 @@ const MessageContent = ({ username, message, isMyMessage, showMenu }) => {
 				{ username}
 			</div>
 
-			{ renderContent() }
+			<div className='message-content'>
+				{ renderContent() }
+			</div>
 	</div>
 	)
 }
