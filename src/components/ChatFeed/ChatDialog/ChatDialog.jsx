@@ -35,7 +35,7 @@ const ChatDialog = (props) => {
     }, [messages])
 
     const handleDeleteMessage = (messageId) => {
-        const message = getMessageById(messages, messageId);
+        const message = getMessageById(messagesList, messageId);
         if(message) {
             setMessagesList(messagesList.filter(msg => msg.id !== messageId));
             setSystemNotification({ 

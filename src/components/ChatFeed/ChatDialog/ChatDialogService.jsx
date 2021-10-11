@@ -37,11 +37,12 @@ export const getMessagesList = (messagesObject) => {
         return [];
     }
 
-    return Object.values(messagesObject);
+    // note: the Backend inserts undefined into messages after deletion
+    // we need to remove those undefined values
+    return _.compact(Object.values(messagesObject));
 }
 
-export const getMessageById = (messages, messageId) => {
-    const messagesList = getMessagesList(messages)
+export const getMessageById = (messagesList, messageId) => {
     return messagesList.find(msg => msg.id === messageId);
 }
 
