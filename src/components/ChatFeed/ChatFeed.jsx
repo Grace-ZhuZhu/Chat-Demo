@@ -29,12 +29,7 @@ const ChatFeed = (props) => {
   	const people = getPeople(chat);
   	const chatTitle = getHeaderTitle(chat, people);
 
-  	const [ detailsExpanded, setDetailsExpanded ] = useState(true);
   	const [ formContent, setFormContent ] = useState('');
-
-  	const handleExpandDetails = () => {
-		setDetailsExpanded(!detailsExpanded);
-  	}
 
   	const handleEditMessage = (content) => {
 		setFormContent(content);
@@ -59,7 +54,6 @@ const ChatFeed = (props) => {
 			<div className="chat-feed">
      	 		<ChatFeedHeader 
 	  				title={chatTitle} 
-					onExpand={handleExpandDetails}
 				/>
       	
 				<ChatDialog 
@@ -77,18 +71,14 @@ const ChatFeed = (props) => {
 				/>
 			</div>
 
-			{
-				detailsExpanded ?
-				<ChatDetailsSection 
-					people={people} 
-					authInfo={authInfo}
-					onFriendAdded={handleFriendAdded}
-					onMemberLeft={handleMemberLeft}
-					setSenderUser={setSenderUser}
-					userName={userName}
-				/> :
-				null
-			}
+			<ChatDetailsSection 
+				people={people} 
+				authInfo={authInfo}
+				onFriendAdded={handleFriendAdded}
+				onMemberLeft={handleMemberLeft}
+				setSenderUser={setSenderUser}
+				userName={userName}
+			/> 
     	</div>
   	);
 };

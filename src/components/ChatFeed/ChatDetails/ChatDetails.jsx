@@ -16,7 +16,12 @@ const ChatDetails = ({
     onFriendAdded, 
     onMemberLeft
 }) => {
+  	const [ showInfo, setShowInfo ] = useState(true);
     const [ showFriendsSection, setshowFriendsSection ] = useState(false);
+
+    const handleExpandDetails = () => {
+		setShowInfo(!showInfo);
+  	}
 
     const handleAddFriend = () => {
         setshowFriendsSection(true);
@@ -73,15 +78,21 @@ const ChatDetails = ({
 
     return (
         <div className='chat-details-container'>
-            <div className='info-section'>
-                Info:
-                <ul>
-                <li><MinusOutlined className='minus-icon'/>  Remove member </li>
-                <li><UserOutlined className='user-icon'/>  Login as current user </li>
-                <li>Right click - Delete a message </li>
-                <li>Each user can only delete his/her own messages </li>
-                <li>Sending messages takes a few seconds till the server responds, please be patient </li>
-                </ul>
+            { showInfo && (
+                <div className='info-section'>
+                    Info:
+                    <ul>
+                        <li><MinusOutlined className='minus-icon'/>  Remove member </li>
+                        <li><UserOutlined className='user-icon'/>  Login as current user </li>
+                        <li>Right click - Delete a message </li>
+                        <li>Each user can only delete his/her own messages </li>
+                        <li>Sending messages takes a few seconds till the server responds, please be patient </li>
+                    </ul>
+                </div>
+                )
+            }
+            <div className='info-button' onClick={handleExpandDetails}>
+                { showInfo? 'Hide Info' : 'Show info' }
             </div>
 
             <div className='members-section'>

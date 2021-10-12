@@ -17,9 +17,17 @@
     padding: 20px;
 }
 
+.info-button {
+    cursor: pointer;
+    text-align: center;
+    padding: 8px;
+    background-color: rgb(223, 231, 240);
+}
+
 .info-section {
     font-size: small;
     padding: 20px;
+    margin-bottom: 0;;
     color: dimgray;
     background-color: rgb(241, 244, 247);
 }
