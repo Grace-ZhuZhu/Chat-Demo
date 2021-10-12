@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef } from 'react';
 import _ from 'lodash';
 import Message from '../Message/Message.jsx';
 import { 
@@ -13,8 +13,14 @@ import SystemNotification from '../Message/SystemNotification.jsx';
 import SystemMessage from '../Message/SystemMessage.jsx';
 import './ChatDialog.css';
 
-const ChatDialog = (props) => {
-    const { chat, userName, messages, authInfo, onEditMessage } = props;
+const ChatDialog = ({ 
+    chat, 
+    userName, 
+    messages, 
+    authInfo, 
+    onEditMessage 
+}) => {
+
     const SYSTEM_NOTIFICATION_INITIAL_STATE = {
         show: false,
         type: null,
@@ -28,11 +34,17 @@ const ChatDialog = (props) => {
         shouldShow: false,
         props: {}
     });
+    const dialogRef = useRef();
 
     useEffect(() => {
         const list = getMessagesList(messages);
         setMessagesList(list);
+        updateScroll();
     }, [messages])
+
+    const updateScroll = () => {
+        dialogRef.current.scrollTop = dialogRef.current.scrollHeight;
+    }
 
     const handleDeleteMessage = (messageId) => {
         const message = getMessageById(messagesList, messageId);
@@ -88,7 +100,7 @@ const ChatDialog = (props) => {
     };
 
     return (
-        <div className='chat-dialog-container'>
+        <div className='chat-dialog-container' ref={dialogRef} >
             <ContextMenu 
                 authInfo={authInfo} 
                 onDelete={handleDeleteMessage}
