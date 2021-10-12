@@ -73,6 +73,16 @@ const ChatDetails = ({
 
     return (
         <div className='chat-details-container'>
+            <div className='info-section'>
+                Info:
+                <ul>
+                <li><MinusOutlined className='minus-icon'/>  Remove member </li>
+                <li><UserOutlined className='user-icon'/>  Login as current user </li>
+                <li>Right click - Delete a message </li>
+                <li>Each user can only delete his/her own messages </li>
+                </ul>
+            </div>
+
             <div className='members-section'>
                 Group Members
                 {renderGroupMembers()}

@@ -2,13 +2,30 @@
     float: right;
     display: flex;
     flex-direction: column;
-    padding-top: 100px;
+    width: 30%;
+}
+
+.members-section, .info-section {
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+    padding-bottom: 0;
+    margin-bottom: 10px;
 }
 
 .members-section {
-    display: flex;
-    flex-direction: column;
-    padding-bottom: 20px;
+    padding: 20px;
+}
+
+.info-section {
+    font-size: small;
+    padding: 20px;
+    color: dimgray;
+    background-color: rgb(241, 244, 247);
+}
+
+.info-section li {
+    padding: 5px;
 }
  
 .invite-friends {
@@ -18,6 +35,7 @@
     height: 30px;
     text-align: center;
     color:dimgrey;
+    margin-bottom: 60px;
 }
 
 .friends-select {
