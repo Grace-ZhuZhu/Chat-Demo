@@ -1,28 +1,41 @@
 import React, { useState } from 'react';
 import _ from 'lodash';
-import { MinusOutlined, LockOutlined } from '@ant-design/icons'
+import { MinusOutlined, LockOutlined, UserOutlined } from '@ant-design/icons'
 import { removePerson } from 'react-chat-engine'; 
 import UserAvatar from '../Message/UserAvatar';
 import FriendsSelector from './FriendsSelector';
-import { getFriendsList } from './ChatDetailsService';
+import { getFriendsList, isCurrentUser } from './ChatDetailsService';
 import { ADMIN_NAME, ADMIN_AUTHENTIFICATION_INFO } from '../../Constants/Authinfo.jsx'
 import './ChatDetails.css'
 
 const ChatDetails = ({ 
+    userName,
+    setSenderUser,
     people, 
     authInfo, 
     onFriendAdded, 
     onMemberLeft
 }) => {
-    const [ showFriends, setShowFriends ] = useState(false);
+    const [ showFriendsSection, setshowFriendsSection ] = useState(false);
 
     const handleAddFriend = () => {
-        setShowFriends(true);
+        setshowFriendsSection(true);
     }
 
     const handleRemoveMember = (username) => {
+        if(isCurrentUser(username, userName)) {
+            setSenderUser(ADMIN_NAME);
+        }
+
         const {chatID} = authInfo;
         removePerson(ADMIN_AUTHENTIFICATION_INFO, chatID, username, onMemberLeft);
+    }
+
+    const handleUserChange = (username) => {
+        if(isCurrentUser(username, userName)) {
+            return;
+        }
+        setSenderUser(username);
     }
 
     const renderGroupMembers = () => {
@@ -34,18 +47,25 @@ const ChatDetails = ({
             const { person } = p;
             const { username } = person;
             const isAdmin = username === ADMIN_NAME;
+            const userClass = isCurrentUser(username, userName) && 'sender' ;
+
             return (
                 <div key={`{username}_index`}>
                     <UserAvatar user={ person } />
                     <span> {username} </span>
 
                     { isAdmin 
-                        ? <LockOutlined /> 
+                        ? <LockOutlined className='lock-icon' /> 
                         : <MinusOutlined 
                             className='minus-icon'
                             onClick={(e) => handleRemoveMember(username)}
                         />
                     }
+
+                    <UserOutlined 
+                        className={`user-icon ${userClass}`}
+                        onClick={(e) => handleUserChange(username)}
+                    />
                 </div>
             )
         })
@@ -60,7 +80,7 @@ const ChatDetails = ({
 
             <div className='invite-friends' onClick={handleAddFriend}> Invite Friends </div>
 
-            { showFriends && 
+            { showFriendsSection && 
                 <FriendsSelector 
                     friends={getFriendsList(people)} 
                     authInfo={authInfo}

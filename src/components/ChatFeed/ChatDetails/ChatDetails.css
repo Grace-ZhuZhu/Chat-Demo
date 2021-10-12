@@ -29,7 +29,18 @@
     padding: 5px;
 }
 
+/* members */
+
+.minus-icon, .user-icon, .lock-icon {
+    padding: 5px;
+}
+
 .minus-icon {
     background-color:rgb(223, 231, 240);
-    padding: 5px;
+}
+
+.sender {
+    background-color:rgb(255, 243, 177);
+    border-radius: 50%;
+    color: green;
 }

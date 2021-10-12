@@ -17,7 +17,8 @@ const ChatFeed = (props) => {
 	  	activeChat, 
 	  	userName, 
 	  	messages,
-	  	creds 
+	  	creds,
+		setSenderUser 
 	} = props;
 	
   	const authInfo = {
@@ -83,6 +84,8 @@ const ChatFeed = (props) => {
 					authInfo={authInfo}
 					onFriendAdded={handleFriendAdded}
 					onMemberLeft={handleMemberLeft}
+					setSenderUser={setSenderUser}
+					userName={userName}
 				/> :
 				null
 			}
