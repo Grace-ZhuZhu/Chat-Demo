@@ -16,10 +16,10 @@ const ChatDetails = ({
     onFriendAdded, 
     onMemberLeft
 }) => {
-  	const [ showInfo, setShowInfo ] = useState(true);
+  	const [ showInfo, setShowInfo ] = useState(false);
     const [ showFriendsSection, setshowFriendsSection ] = useState(false);
 
-    const handleExpandDetails = () => {
+    const handleShowInfo = () => {
 		setShowInfo(!showInfo);
   	}
 
@@ -91,7 +91,7 @@ const ChatDetails = ({
                 </div>
                 )
             }
-            <div className='info-button' onClick={handleExpandDetails}>
+            <div className='info-button' onClick={handleShowInfo}>
                 { showInfo? 'Hide Info' : 'Show info' }
             </div>
 
