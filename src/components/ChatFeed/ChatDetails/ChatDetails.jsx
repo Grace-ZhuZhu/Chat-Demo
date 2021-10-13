@@ -2,12 +2,10 @@
 /* eslint-disable max-len */
 import React, { useState } from 'react';
 import _ from 'lodash';
-import { MinusOutlined, LockOutlined, UserOutlined } from '@ant-design/icons';
-import { removePerson } from 'react-chat-engine';
-import UserAvatar from '../Message/UserAvatar';
+import InfoSection from './InfoSection';
 import FriendsSelector from './FriendsSelector';
-import { getFriendsList, isCurrentUser } from './ChatDetailsService';
-import { ADMIN_NAME, ADMIN_AUTHENTIFICATION_INFO } from '../../Constants/Authinfo';
+import { getFriendsList } from './ChatDetailsService';
+import GroupMemberRow from './GroupMemberRow';
 import './ChatDetails.css';
 
 const ChatDetails = ({
@@ -29,22 +27,6 @@ const ChatDetails = ({
     setshowFriendsSection(true);
   };
 
-  const handleRemoveMember = (username) => {
-    if (isCurrentUser(username, userName)) {
-      setSenderUser(ADMIN_NAME);
-    }
-
-    const { chatID } = authInfo;
-    removePerson(ADMIN_AUTHENTIFICATION_INFO, chatID, username, onMemberLeft);
-  };
-
-  const handleUserChange = (username) => {
-    if (isCurrentUser(username, userName)) {
-      return;
-    }
-    setSenderUser(username);
-  };
-
   const renderGroupMembers = () => {
     if (_.isEmpty(people)) {
       return null;
@@ -52,64 +34,25 @@ const ChatDetails = ({
 
     return people.map((p) => {
       const { person } = p;
-      const { username } = person;
-      const isAdmin = username === ADMIN_NAME;
-      const userClass = isCurrentUser(username, userName) && 'sender';
 
       return (
-        <div key="{username}_index">
-          <UserAvatar user={person} />
-          <span>
-            {' '}
-            {username}
-            {' '}
-          </span>
-
-          { isAdmin
-            ? <LockOutlined className="lock-icon" />
-            : (
-              <MinusOutlined
-                className="minus-icon"
-                onClick={() => handleRemoveMember(username)}
-              />
-            )}
-
-          <UserOutlined
-            className={`user-icon ${userClass}`}
-            onClick={() => handleUserChange(username)}
-          />
-        </div>
+        <GroupMemberRow
+          person={person}
+          userName={userName}
+          authInfo={authInfo}
+          setSenderUser={setSenderUser}
+          onMemberLeft={onMemberLeft}
+        />
       );
     });
   };
 
   return (
     <div className="chat-details-container">
-      { showInfo && (
-        <div className="info-section">
-          Info:
-          <ul>
-            <li>
-              <MinusOutlined className="minus-icon" />
-              {' '}
-              Remove member
-              {' '}
-            </li>
-            <li>
-              <UserOutlined className="user-icon" />
-              {' '}
-              Login as current user
-              {' '}
-            </li>
-            <li>Right click - Delete a message </li>
-            <li>Each user can only delete his/her own messages </li>
-            <li>Sending messages takes a few seconds till the server responds, please be patient </li>
-          </ul>
-        </div>
-      )}
-      <button className="info-button" onClick={handleShowInfo}>
-        { showInfo ? 'Hide Info' : 'Show info' }
-      </button>
+      <InfoSection
+        showInfo={showInfo}
+        handleShowInfo={handleShowInfo}
+      />
 
       <div className="members-section">
         Group Members

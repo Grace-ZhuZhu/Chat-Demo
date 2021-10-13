@@ -90,13 +90,12 @@ const ChatDialog = ({
       }
 
       return (
-        <div key={message.id}>
-          <Message
-            message={message}
-            isMyMessage={isMyMessage(userName, message)}
-            showMenu={handleShowMenu}
-          />
-        </div>
+        <Message
+          key={message.id}
+          message={message}
+          isMyMessage={isMyMessage(userName, message)}
+          showMenu={handleShowMenu}
+        />
       );
     });
   };
