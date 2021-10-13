@@ -37,7 +37,6 @@ const FriendsSelector = ({ friends, authInfo, onFriendAdded }) => {
 
   const renderFriendOptions = () => friends.map((friendName, index) => {
     const key = `${friendName}_${index}`;
-
     return (
       <FriendOption
         friendName={friendName}
