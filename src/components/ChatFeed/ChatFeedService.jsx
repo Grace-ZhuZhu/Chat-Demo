@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import { sendMessage } from 'react-chat-engine';
-import { SYSTEM_MESSAGE_TYPES } from './ChatDialog/ChatDialogService';
+import { SYSTEM_MESSAGE_TYPES } from '../Constants/Types';
 import { SYSTEM_NAME, SYSTEM_AUTHENTIFICATION_INFO } from '../Constants/Authinfo';
 
 export const getPeople = (chat) => {

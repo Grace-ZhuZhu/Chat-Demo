@@ -1,17 +1,7 @@
 import _ from 'lodash';
 import { isTextMessage } from '../Message/MessageService';
 import { SYSTEM_NAME } from '../../Constants/Authinfo';
-
-export const SYSTEM_NOTIFICATION_TYPES = {
-  DELETE_TEXT: 'DELETE_TEXT',
-  DELETE_MEDIA: 'DELETE_MEDIA',
-};
-
-export const SYSTEM_MESSAGE_TYPES = {
-  GREETING: 'GREETING',
-  WELCOME: 'WELCOME',
-  LEAVE_GROUP: 'LEAVE_GROUP',
-};
+import { SYSTEM_NOTIFICATION_TYPES } from '../../Constants/Types';
 
 export const isSystemMessage = (message) => message.sender.username === SYSTEM_NAME;
 
