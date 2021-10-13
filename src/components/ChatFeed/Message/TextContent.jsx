@@ -1,12 +1,9 @@
-import React from 'react'
+import React from 'react';
 
-const TextContent = ({text, isMyMessage}) => {
+const TextContent = ({ text }) => (
+  <div className="message-text">
+    {text}
+  </div>
+);
 
-    return (
-        <div className='message-text'>
-          	{text}
-        </div>
-    )
-}
-
-export default TextContent
+export default TextContent;

@@ -1,14 +1,11 @@
-import React from 'react'
+import React from 'react';
 
-const ImageContent = ({ file, isMyMessage }) => {
+const ImageContent = ({ file }) => (
+  <img
+    src={file}
+    alt="message-attachment"
+    className="message-image"
+  />
+);
 
-    return (
-        <img
-            src={ file }
-            alt="message-attachment"
-        	className="message-image"
-        />
-    )
-}
-
-export default ImageContent
+export default ImageContent;

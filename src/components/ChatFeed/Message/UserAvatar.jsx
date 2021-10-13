@@ -1,9 +1,7 @@
-import React from 'react'
+import React from 'react';
 
-const UserAvatar = ({ user }) => {
-    return (
-        <img src={user.avatar} alt="Avatar" className="avatar" />
-    )
-}
+const UserAvatar = ({ user }) => (
+  <img src={user.avatar} alt="Avatar" className="avatar" />
+);
 
-export default UserAvatar
+export default UserAvatar;

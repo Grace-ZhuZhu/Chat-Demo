@@ -1,57 +1,58 @@
+/* eslint-disable no-unused-expressions */
 import React, { useRef } from 'react';
 import TextContent from './TextContent';
 import ImageContent from './ImageContent';
-import { hasAttachment } from './MessageService.jsx';
-import { getClassNameForMyOrOtherContent } from './MessageService.jsx';
+import { hasAttachment, getClassNameForMyOrOtherContent } from './MessageService';
 
-const MessageContent = ({ username, message, isMyMessage, showMenu }) => {
-    const myOrOtherContentClass = getClassNameForMyOrOtherContent(isMyMessage);
-	const triggerRef = useRef();
+const MessageContent = ({
+  username, message, isMyMessage, showMenu,
+}) => {
+  const myOrOtherContentClass = getClassNameForMyOrOtherContent(isMyMessage);
+  const triggerRef = useRef();
 
-	function handleContextMenu(event){
-		event.preventDefault();
+  function handleContextMenu(event) {
+    event.preventDefault();
 
-		isMyMessage && showMenu({ 
-			event,
-			shouldShow: true,
-			props: {
-				messageId: message.id,
-			}
-		});
-		
-	}
+    isMyMessage && showMenu({
+      event,
+      shouldShow: true,
+      props: {
+        messageId: message.id,
+      },
+    });
+  }
 
-	const renderContent = () => {
-    	if (hasAttachment(message)) {
-        	return (
-            	  <ImageContent
-                	file={message.attachments[0].file}
-              	/>
-        	);
-      	}
-    
-      	return (
-        	<TextContent 
-            	text={message.text} 
-        	/>
-      	);
-	}
+  const renderContent = () => {
+    if (hasAttachment(message)) {
+      return (
+        <ImageContent
+          file={message.attachments[0].file}
+        />
+      );
+    }
 
-	return (
-		<div 
-			className={ `message-content-block ${myOrOtherContentClass}`}
-			onContextMenu={ handleContextMenu }
-			ref={triggerRef}
-		>
-			<div className='username'> 
-				{ username}
-			</div>
+    return (
+      <TextContent
+        text={message.text}
+      />
+    );
+  };
 
-			<div className='message-content'>
-				{ renderContent() }
-			</div>
-	</div>
-	)
-}
+  return (
+    <div
+      className={`message-content-block ${myOrOtherContentClass}`}
+      onContextMenu={handleContextMenu}
+      ref={triggerRef}
+    >
+      <div className="username">
+        { username}
+      </div>
 
-export default MessageContent
+      <div className="message-content">
+        { renderContent() }
+      </div>
+    </div>
+  );
+};
+
+export default MessageContent;

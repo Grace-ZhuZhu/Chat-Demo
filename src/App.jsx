@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import React, { Component } from 'react';
 import ChatWindow from './components/ChatWindow';
 import { PROJECT_ID, USER_PASSWORD, ADMIN_NAME } from './components/Constants/Authinfo.jsx';

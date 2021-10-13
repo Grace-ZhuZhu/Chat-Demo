@@ -1,54 +1,55 @@
+/* eslint-disable no-unused-expressions */
 import React, { useState, useEffect } from 'react';
 import { sendMessage } from 'react-chat-engine';
-import UploadButton from './UploadButton.jsx';
-import SubmitButton from './SubmitButton.jsx';
-import { PLACE_HOLDER } from './MessageFormService.jsx';
+import { PLACE_HOLDER } from '../../Constants/UI';
+import UploadButton from './UploadButton';
+import SubmitButton from './SubmitButton';
 import './MessageForm.css';
 
 const MessageForm = ({ authInfo, content, onFinishEdit }) => {
-	const {creds, chatID} = authInfo;
-  	const [value, setValue] = useState(content);
-	
-	useEffect(() => {
-		content && setValue(content);
-    }, [content])
+  const { creds, chatID } = authInfo;
+  const [value, setValue] = useState(content);
 
-  	const handleChange = (event) => {
-    	setValue(event.target.value);
-  	};
+  useEffect(() => {
+    content && setValue(content);
+  }, [content]);
 
-  	const handleSubmit = (event) => {
-    	event.preventDefault();
+  const handleChange = (event) => {
+    setValue(event.target.value);
+  };
 
-    	const text = value.trim();
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
-    	if (text.length > 0) {
-      		sendMessage(creds, chatID, { text });
-    	}
+    const text = value.trim();
 
-    	setValue('');
-		content && onFinishEdit();
-  	};
+    if (text.length > 0) {
+      sendMessage(creds, chatID, { text });
+    }
 
-  	const handleUpload = (event) => {
-    	sendMessage(creds, chatID, { files: event.target.files, text: '' });
-  	};
+    setValue('');
+    content && onFinishEdit();
+  };
 
-  	return (
-		<div className="message-form-container">
-    		<form className="message-form" onSubmit={handleSubmit}>
-      			<input
-        			className="message-input"
-        			placeholder={PLACE_HOLDER}
-        			value={value}
-        			onChange={handleChange}
-        			onSubmit={handleSubmit}
-      			/>
+  const handleUpload = (event) => {
+    sendMessage(creds, chatID, { files: event.target.files, text: '' });
+  };
 
-				<UploadButton upload={handleUpload} />
-      			<SubmitButton />
-    		</form>
-		</div>
+  return (
+    <div className="message-form-container">
+      <form className="message-form" onSubmit={handleSubmit}>
+        <input
+          className="message-input"
+          placeholder={PLACE_HOLDER}
+          value={value}
+          onChange={handleChange}
+          onSubmit={handleSubmit}
+        />
+
+        <UploadButton upload={handleUpload} />
+        <SubmitButton />
+      </form>
+    </div>
   );
 };
 
